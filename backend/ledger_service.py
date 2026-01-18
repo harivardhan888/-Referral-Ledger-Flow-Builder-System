@@ -1,6 +1,6 @@
 import uuid
 from sqlalchemy.orm import Session
-from . import models, schemas
+import models, schemas
 from decimal import Decimal
 import json
 

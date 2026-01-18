@@ -1,5 +1,5 @@
 from typing import List, Dict, Any
-from . import schemas
+import schemas
 
 def evaluate_condition(condition: schemas.RuleCondition, context: Dict[str, Any]) -> bool:
     # simple dot notation support e.g. "referrer.status"

@@ -2,7 +2,7 @@ from sqlalchemy import Column, Integer, String, ForeignKey, DateTime, Enum, DECI
 from sqlalchemy.orm import relationship
 import enum
 import datetime
-from .database import Base
+from database import Base
 
 class TransactionStatus(str, enum.Enum):
     PENDING = "PENDING"
