@@ -94,6 +94,8 @@ const initialNodes = [
 let id = 0;
 const getId = () => `dndnode_${id++}`;
 
+const API_BASE_URL = import.meta.env.VITE_API_URL || 'http://127.0.0.1:8000';
+
 const FlowBuilder = () => {
   const reactFlowWrapper = useRef(null);
   const [nodes, setNodes, onNodesChange] = useNodesState(initialNodes);
@@ -171,7 +173,7 @@ const FlowBuilder = () => {
       
       try {
         // Save (Mock)
-        await axios.post('http://127.0.0.1:8000/flows', { id: 'latest_flow', nodes, edges, generated_rule: rule });
+        await axios.post(`${API_BASE_URL}/flows`, { id: 'latest_flow', nodes, edges, generated_rule: rule });
         alert('Flow saved!');
       } catch (error) {
         console.error(error);
@@ -205,7 +207,7 @@ const FlowBuilder = () => {
     const rule = { id: 'temp', name: 'Test', conditions, actions, operator: 'AND' };
 
     try {
-        const res = await axios.post('http://127.0.0.1:8000/rules/evaluate', {
+        const res = await axios.post(`${API_BASE_URL}/rules/evaluate`, {
             context,
             rules: [rule]
         });
@@ -220,7 +222,7 @@ const FlowBuilder = () => {
       if (!prompt) return;
 
       try {
-          const res = await axios.post('http://127.0.0.1:8000/rules/generate', { prompt });
+          const res = await axios.post(`${API_BASE_URL}/rules/generate`, { prompt });
           const rule = res.data;
           
           // Reconstruct nodes from rule
