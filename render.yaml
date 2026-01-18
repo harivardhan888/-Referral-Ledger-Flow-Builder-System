@@ -14,12 +14,12 @@ services:
         value: 3.9.0
 
   # Frontend Service (React/Vite)
-  - type: pwa
+  - type: web
     name: pineos-frontend
     env: static
     rootDir: frontend
     buildCommand: npm install && npm run build
-    publishDir: dist
+    staticPublishPath: dist
     plan: free
     routes:
       - type: rewrite
